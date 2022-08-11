@@ -1,0 +1,46 @@
+Retrieves a stream of coordinates. (Placeholder, please make sure to update)
+---
+description: Retrieves an array of Coordinates.
+consumes:
+  - application/json
+parameters:
+    - name: coordinatesArray
+      in: body
+      required: true
+      description: Array of Coordinates
+      schema:
+          $ref: '#/definitions/Coordinates_Array'
+definitions:
+  Coordinates_Array:
+    type: array
+    items:
+      type: object
+      properties:
+        mac:
+          type: string
+        sequence_number:
+          type: integer
+          format: int32
+        rssi:
+          type: integer
+          format: int32
+        battery_level:
+          type: integer
+          format: int32
+        datetime:
+          type: string
+  Color:
+    type: string
+responses:
+  200:
+    description: A list of colors (may be filtered by palette)
+    schema:
+      $ref: '#/definitions/Palette'
+    examples:
+      rgb: ['red', 'green', 'blue']
+  201:
+    description: Uploaded.
+  '500':
+    description: Error.
+  '405':
+    description: Invalid body has been presented.
